@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Успеваемость - SCHOOL PROJECT{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Предмет</th>
+            {% for i in 0..15 %}
+                 <th scope="col">{{ i }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in 0..8 %}
+        <tr>
+            <th scope="row">Предмет</th>
+
+            {% for i in 0..15 %}
+                <td>mark {{ i }}</td>
+            {% endfor %}
+        </tr>
+
+        {% endfor %}
+            <td>Mark</td>
+            <td>@mdo</td>
+        <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

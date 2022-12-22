@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TimeTableController!{% endblock %}
+
+{% block body %}
+    <div style="display: flex; flex-direction: column; width: 80%;">
+        <div class="calendar-flex" style="display: flex; flex-direction: row; overflow-x: scroll; overflow-y: hidden; width: 100%;">
+            {% for i in 0..6 %}
+                <div class="calendar {{ calendars[i] }}" id="{{ calendars[i] }}" style="min-width: 450px; height: 100%; margin: 0 20px;">
+                    <div class="calendar_header">
+                        <button class="switch-month switch-left"> <i class="fa fa-chevron-left"></i></button>
+                        <h2 style="width: 100%;"></h2>
+                        <button class="switch-month switch-right"> <i class="fa fa-chevron-right"></i></button>
+                    </div>
+                    <div class="calendar_weekdays"></div>
+                    <div class="calendar_content"></div>
+                </div>
+            {% endfor %}
+        </div>
+        <div>
+            <p>
+                <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Ссылка с href
+                </a>
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Кнопка с data-target
+                </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    Некоторый заполнитель для компонента сворачивания. Эта панель по умолчанию скрыта, но открывается, когда пользователь активирует соответствующий триггер.
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

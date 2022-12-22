@@ -1,0 +1,11 @@
+@import "/assets/styles/blocks/header.scss";
+@import "/assets/styles/blocks/calendar.scss";
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    min-height: 100vh;
+}
+
+.sf-toolbar {
+    position: absolute;
+}
