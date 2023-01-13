@@ -1,0 +1,22 @@
+{# templates/login/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Авторизация{% endblock %}
+{% block body %}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <form action="{{ path('app_login') }}" method="post" style="margin: auto;">
+        <h1 class="h3 mb-3 fw-normal py-3">Пожалуйста авторизуйтесь</h1>
+        <div class="form-floating" style="margin-bottom: 1em;">
+            <input type="email" class="form-control" name="_username" id="username" value="{{ last_username }}" placeholder="name@example.com">
+            <label for="floatingInput">Email</label>
+        </div>
+        <div class="form-floating" style="margin-bottom: 1em;">
+            <input type="password" class="form-control" name="_password" id="password" placeholder="Password">
+            <label for="floatingPassword">Пароль</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
+    </form>
+{% endblock %}

@@ -6,9 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomeController extends AbstractController
+class TechController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
+    #[Route('/tech', name: 'app_tech')]
     public function index(): Response
     {
         $params = [];
@@ -21,8 +21,8 @@ class HomeController extends AbstractController
             $params += ['user' => null];
         }
 
-        return $this->render('controls/home.html.twig', [
-            'controller_name' => 'HomeController',
+        return $this->render('tech/index.html.twig', [
+            'controller_name' => 'TechController',
             'params' => $params,
         ]);
     }

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div style="width: 100%;">
+        <div style="display: flex; width: 100%; justify-content: space-between;">
+            <h4>{{ faculty.getTitle() }}</h4>
+            <div>
+                <button type="button" class="btn btn-success">Изменить</button>
+                <button type="button" class="btn btn-danger">Удалить</button>
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: column; margin-top: 2em;">
+            <div style="display: inherit; width: 100%; margin-bottom: 1em;">
+                <h5>Кафедры</h5>
+            </div>
+            <div class="px-3">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="/department/form/{{ faculty.getId() }}" style="text-decoration: none;">Создать новый элемент</a>
+                    </div>
+                </div>
+
+                {% for i in departments %}
+                    <div class="card" style="margin: 1em 0;">
+                        <div class="card-body">
+                            <div style="display:flex; justify-content: space-between;">
+                                <h5>{{ i.getTitle() }}</h5>
+                                <div style="display: flex;">
+                                    <div>1</div>
+                                    <div>2</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

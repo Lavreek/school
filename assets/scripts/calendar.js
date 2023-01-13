@@ -1,11 +1,6 @@
 const $ = require('jquery');
 
-(function($) {
-
-	"use strict";
-
-
-	$(document).ready(function () {
+$(document).ready(function () {
     function c(passed_month, passed_year, calNum) {
         // var calendar = calNum == 0 ? calendars.cal1 : calendars.cal2;
 
@@ -73,7 +68,7 @@ const $ = require('jquery');
                 if (
                 (
                 (shownDate != today.getDate() && passed_month == today.getMonth()) || passed_month != today.getMonth()) && iter_date < today) {
-                    var m = '<div class="past-date select date-' + month + '-' + shownDate + '">';
+                    var m = '<div class="past-date select-date date-' + month + '-' + shownDate + '">';
                 } else {
                     var m = checkToday(iter_date) ? '<div class="today">' : "<div>";
                 }
@@ -227,7 +222,6 @@ const $ = require('jquery');
         var todayDate = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
         var checkingDate = e.getFullYear() + '/' + (e.getMonth() + 1) + '/' + e.getDate();
         return todayDate == checkingDate;
-
     }
 
     function getAdjacentMonth(curr_month, curr_year, direction) {
@@ -570,11 +564,9 @@ const $ = require('jquery');
         }
         return selected;
     }
-});
-    $(document).ready(function(){
-        var outerContent = $('.calendar-flex');
-        var innerContent = $('.calendar-flex > div');
 
-        outerContent.scrollLeft((innerContent.width()) * 2.5);
-    });
-})($);
+    let outerContent = $('.calendar-flex');
+    let innerContent = $('.calendar-flex > div');
+
+    outerContent.scrollLeft((innerContent.width()) * 2.5);
+});
