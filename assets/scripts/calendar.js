@@ -1,4 +1,5 @@
 const $ = require('jquery');
+const bootstrap = require("bootstrap");
 
 $(document).ready(function () {
     function c(passed_month, passed_year, calNum) {
@@ -59,20 +60,66 @@ $(document).ready(function () {
                 r++;
             }
         }
+
         for (var cell = 0; cell < 42 - r; cell++) { // 42 date-cells in calendar
+
             if (cell >= calMonthArray.length) {
+                // let date = 42 - cell;
+                // var futureDate = calMonthArray[date].day;
+                // let future = new Date(passed_year, passed_month, futureDate);
+                // let futureExtra = '_select_' + future.getDay() + '-' + future.getMonth() + 1 + '-' + future .getFullYear();
+
                 calendar.datesBody.append('<div class="blank"></div>');
             } else {
                 var shownDate = calMonthArray[cell].day;
                 var iter_date = new Date(passed_year, passed_month, shownDate);
+                let extra = '_select_' + iter_date.getFullYear() + '-' + iter_date.getMonth() + 1 + '-' + iter_date.getDate();
+
                 if (
                 (
                 (shownDate != today.getDate() && passed_month == today.getMonth()) || passed_month != today.getMonth()) && iter_date < today) {
-                    var m = '<div class="past-date select-date date-' + month + '-' + shownDate + '">';
+                    var m = '<div class="past-date ' + extra + '">';
                 } else {
-                    var m = checkToday(iter_date) ? '<div class="today">' : "<div>";
+                    var m = checkToday(iter_date) ? '<div class="today ' + extra + '">' : "<div class='" + extra + "'>";
                 }
                 calendar.datesBody.append(m + shownDate + "</div>");
+
+                $('.' + extra).on('click', function () {
+                    let date = $(this).attr('class').split('_select_');
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/api/get/lesson',
+                        data: 'date=' + date[1] + '&groupId=' + $('#_group_id').val(),
+
+                        success: function (data) {
+                            $('.subjects').empty().append('<div><h2>' + date[1] + '</h2>');
+                            $('.subjects').append('<ul>');
+
+                            for (let i = 0; i < data['success'].length; i++) {
+                                $('.subjects').append('<div style="box-shadow: 0px 0px 15px -10px black; border-radius: 12px; margin: 1em 0; padding: 1em; margin-right: 1em;"><h5>' + data['success'][i] +'</h5></div>');
+                            }
+
+                            $('.subjects').append('</ul>');
+
+                            // '                            <ul>{% for i in 0..2 %}\n' +
+                            // '\n' +
+                            // '                                        <h4>Предмет</h4>\n' +
+                            // '                                        <div>\n' +
+                            // '                                            <ul>\n' +
+                            // '                                                <h5>Материалы к уроку</h5>\n' +
+                            // '                                                <li>1</li>\n' +
+                            // '                                                <li>2</li>\n' +
+                            // '                                                <li>3</li>\n' +
+                            // '                                            </ul>\n' +
+                            // '                                        </div>\n' +
+                            // '                                    </div>\n' +
+                            // '                                {% endfor %}\n' +
+                            // '                            </ul>\n' +
+                            // '                        </div>'
+                        }
+                    });
+                });
             }
         }
 
@@ -227,6 +274,7 @@ $(document).ready(function () {
     function getAdjacentMonth(curr_month, curr_year, direction) {
         var theNextMonth;
         var theNextYear;
+
         if (direction == "next") {
             theNextMonth = (curr_month + 1) % 12;
             theNextYear = (curr_month == 11) ? curr_year + 1 : curr_year;
@@ -438,7 +486,7 @@ $(document).ready(function () {
 
         }
         if ((month + monthIndex) < 0) {
-            calcMonth = 12 - (monthIndex + month);
+            calcMonth = 12 + (monthIndex + month);
             calcYear--;
         }
 

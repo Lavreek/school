@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ templates['title'] }}{% endblock %}
+
+{% block body %}
+    <form id="{{ templates['form_class'] }}-create" style="margin: auto;">
+        <div class="mb-3">
+            <label for="_title" class="form-label">Создание ресурса "{{ templates['title'] }}"</label>
+
+
+            {% if templates['teacher'] is defined %}
+                <div style="margin: 1em 0;">
+                    <label for="_teacher_select" class="form-label">Учитель</label>
+                    <select class="form-select" id="_teacher_select" name="_teacher_select">
+                        {% for i in templates['teacher'] %}
+                            <option value="{{ i.getId() }}">{{ i.getName() }} </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+            {% if templates['subject'] is defined %}
+                <div style="margin: 1em 0;">
+                    <label for="_subject_select" class="form-label">Предмет</label>
+                    <select class="form-select" id="_subject_select" name="_subject_select">
+                        {% for i in templates['subject'] %}
+                            <option value="{{ i.getId() }}">{{ i.getTitle() }} </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+
+            <div style="margin: 1em 0;">
+                <label for="_date_of_week_select" class="form-label">День недели</label>
+                <select class="form-select" id="_date_of_week_select" name="_date_of_week_select">
+                    <option value="0">Пн</option>
+                    <option value="1">Вт</option>
+                    <option value="2">Ср</option>
+                    <option value="3">Чт</option>
+                    <option value="4">Пт</option>
+                    <option value="5">Сб</option>
+                    <option value="6">Вс</option>
+                </select>
+            </div>
+
+            <label for="_name">Название урока</label>
+            <input class="form-control" name="_name" id="_name" placeholder="Название урока">
+            <input type="hidden" name="_program_id" id="_program_id" value="{{ templates['id'] }}">
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-primary {{ templates['form_class'] }}-button-create">Создать</button>
+        </div>
+        <div class="messages-collapse collapse" id="messages-collapse">
+            <div class="display-messages py-4"></div>
+        </div>
+    </form>
+{% endblock %}

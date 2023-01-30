@@ -2,12 +2,9 @@
 {% block body %}
     <div class="container" style="width: 100%;">
         <div style="display: flex; width: 100%; justify-content: space-between;">
-            <h4>{{ faculty.getTitle() }}</h4>
+            <h5>Факультеты</h5>
             <div>
-                <p>Кафедра:</p>
-                <a href="/department/form/{{ faculty.getId() }}" type="button" class="btn btn-primary">Создать</a>
-                <button type="button" class="btn btn-success">Изменить</button>
-                <button type="button" class="btn btn-danger">Удалить</button>
+                <a href="/faculty/form" type="button" class="btn btn-primary">Создать</a>
             </div>
         </div>
         <div style="display: flex; flex-direction: column; margin-top: 2em;">
@@ -15,7 +12,7 @@
                 <h5>Кафедры</h5>
             </div>
             <div class="px-3">
-                {% for i in departments %}
+                {% for i in params['couses'] %}
                     <div class="card" style="margin: 1em 0;">
                         <div class="card-body">
                             <div style="display:flex; justify-content: space-between;">

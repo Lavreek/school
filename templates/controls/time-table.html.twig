@@ -4,6 +4,9 @@
 
 {% block body %}
     <div style="display: flex; flex-direction: column; width: 80%;">
+        {% if group is defined and group|length > 0 %}
+            <input id="_group_id" type="hidden" value="{{ group[0].getId() }}">
+        {% endif %}
         <div class="calendar-flex" style="display: flex; flex-direction: row; overflow-x: scroll; overflow-y: hidden; width: 100%;">
             {% for i in 0..6 %}
                 <div class="calendar {{ calendars[i] }}" id="{{ calendars[i] }}" style="min-width: 450px; height: 100%; margin: 0 20px;">
@@ -20,26 +23,8 @@
         <div style="margin: 1em;">
             <div class="collapse" id="collapseExample">
                 <div style="display: flex; flex-direction: column; width: 100%;">
-                    <div style="padding: 4px; border-radius: 12px;">
-                        <div>
-                            <h2>Дата</h2>
-                            <ul>
-                                {% for i in 0..2 %}
-                                    <div style="box-shadow: 0px 0px 15px -10px black; border-radius: 12px; margin: 1em 0; padding: 1em; margin-right: 1em;">
+                    <div class="subjects" style="padding: 4px; border-radius: 12px;">
 
-                                        <h4>Предмет</h4>
-                                        <div>
-                                            <ul>
-                                                <h5>Материалы к уроку</h5>
-                                                <li>1</li>
-                                                <li>2</li>
-                                                <li>3</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            </ul>
-                        </div>
 
                     </div>
                 </div>

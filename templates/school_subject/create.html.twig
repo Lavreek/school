@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Создание предмета{% endblock %}
+
+{% block body %}
+    <form id="school-subject-create" style="margin: auto;">
+        <div class="mb-3">
+            <label for="_title" class="form-label">Название предмета</label>
+            <input type="text" class="form-control" name="_title" id="title" aria-describedby="titleHelp">
+            <input type="hidden" name="_user_id" value="{{ params['user'].getId() }}">
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-primary school-subject-button-create">Создать</button>
+        </div>
+        <div class="messages-collapse collapse" id="messages-collapse">
+            <div class="display-messages py-4"></div>
+        </div>
+    </form>
+{% endblock %}

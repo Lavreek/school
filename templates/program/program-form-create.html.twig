@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ templates['title'] }}{% endblock %}
+
+{% block body %}
+    <form id="{{ templates['form_class'] }}-create" style="margin: auto;">
+        <div class="mb-3">
+            <h5 style="margin: 1em 0;">Создание ресурса "{{ templates['title'] }}"</h5>
+            <div>
+                <label for="_title" class="form-label">Название программы</label>
+                <input class="form-control" name="_title" id="_title">
+            </div>
+            <div style="margin: 1em 0;">
+                <label for="_group_select" class="form-label">Для группы</label>
+                <select class="form-select" id="_group_select" name="_group_select">
+                    {% for i in templates['group'] %}
+                        <option value="{{ i.getId() }}">{{ i.getTitle() }} </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <div style="display: inline-block; width: 49%">
+                    <label class="form-label" for="_date_start">Дата начала программы</label>
+                    <input type="date" class="form-control" name="_date_start" id="_date_start">
+                </div>
+                <div style="display: inline-block; width: 49%">
+                    <label class="form-label" for="_date_end">Дата конца программы</label>
+                    <input type="date" class="form-control" name="_date_end" id="_date_end">
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-primary {{ templates['form_class'] }}-button-create">Создать</button>
+        </div>
+        <div class="messages-collapse collapse" id="messages-collapse">
+            <div class="display-messages py-4"></div>
+        </div>
+    </form>
+{% endblock %}

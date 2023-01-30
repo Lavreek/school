@@ -16,7 +16,7 @@
     <body style="display: flex; flex-direction: column; justify-content: space-between;">
         {{ include('blocks/header.html.twig') }}
         <div style="display: flex; width: 100%; height: 100%;">
-            {% if params['user'] is not null and params['user'].getRoles() != 'USER_GUEST' %}
+            {% if get_user_auth() is not null and get_user_role() != 'USER_GUEST' %}
                 {{ include('blocks/sidebar.html.twig') }}
             {% endif %}
             {% block body %}{% endblock %}

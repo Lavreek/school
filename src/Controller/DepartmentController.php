@@ -13,6 +13,47 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DepartmentController extends AbstractController
 {
+    const title = 'Кафедры';
+    const form_class = 'department';
+    const create_path = '/department/form/create';
+
+    #[Route('/departments', name: 'app_department_table')]
+    public function getDepartmentTable(ManagerRegistry $registry): Response
+    {
+        $table = $registry->getRepository(Faculties::class)->findAll();
+
+        $templates = [
+            'title' => self::title,
+            'create_path' => self::create_path,
+            'table' => $table,
+        ];
+
+        return $this->render('patterns/table-view.html.twig', [
+            'templates' => $templates,
+        ]);
+    }
+
+    #[Route('/department/form/create', name: 'app_department_form_create')]
+    public function formCreateDepartment(ManagerRegistry $registry): Response
+    {
+        $table = $registry->getRepository(Faculties::class)->findAll();
+
+        $form_params = [
+            'title' => "",
+            'faculty_select' => $table,
+        ];
+
+        $templates = [
+            'title' => self::title,
+            'form_class' => self::form_class,
+        ];
+
+        return $this->render('patterns/form-create.html.twig', [
+            'templates' => $templates,
+            'form_params' => $form_params,
+        ]);
+    }
+
     #[Route('/department/form/{id}', name: 'app_department_form')]
     public function formDepartment(ManagerRegistry $registry, $id): Response
     {

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ templates['title'] }}{% endblock %}
+
+{% block body %}
+    <form id="{{ templates['form_class'] }}-create" style="margin: auto;">
+        <h5 style="margin: 1em 0;">Связь почты с учителем"</h5>
+        <div style="margin: 1em 0;">
+            <label for="_user_email">Почта пользователя</label>
+            <input class="form-control" id="_user_email" value="{{ templates['user'].getEmail() }}" readonly>
+            <input type="hidden" name="_user_id" id="_user_id" value="{{ templates['user'].getId() }}">
+        </div>
+        <div style="margin: 1em 0;">
+            <label for="_teacher">Имя преподавателя</label>
+            <input class="form-control" id="_teacher" name="_teacher">
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-primary {{ templates['form_class'] }}-button-create">Создать</button>
+        </div>
+        <div class="messages-collapse collapse" id="messages-collapse">
+            <div class="display-messages py-4"></div>
+        </div>
+    </form>
+{% endblock %}
